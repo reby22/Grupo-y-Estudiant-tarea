@@ -1,12 +1,10 @@
 import java.util.Objects;
 
-//Modificadores de acceso ---> Encapsulamiento
 class Student {
     private final String name;
     private final String lastName;
     private final String code;
 
-    // Constructor (Nos ayuda a inicializar variable en los valores que necesitemos)
 
     Student(String name, String lastName, String code){
         this.name = name;
@@ -14,7 +12,6 @@ class Student {
         this.code = code;
     }
 
-    // Getters
 
     public String getName(){
         return name;
@@ -30,7 +27,6 @@ class Student {
 }
 
 class Group {
-    //Cuando declaras atributos se inicializan en "null" de tipo String (tipo primitivos)
 
     private final String code;
     private final Student[] students;
@@ -41,18 +37,6 @@ class Group {
         this.code = code;
         students = new Student[capacity];
     }
-
-    // Se inicializa en "0", todos los de tipo numéricos (int, float, short, byte, double, char)
-    // boolean (otro tipo de dato) Se inicializa en "false"
-
-    /*
-    public void setCode(String code){
-        this.code = code;
-    }
-
-    public void setCapacity(int capacity){
-        students = new Student[capacity];
-    }*/
 
     public boolean addStudent(Student student){
         if(enrolled < students.length){
@@ -87,11 +71,6 @@ class Group {
     public int getRejected(){
         return rejected;
     }
-
-    /*
-    public Student getStudent(int index){
-        return students [index];
-    }*/
 
     public void removeStudent(String code) {
         int i;
@@ -161,23 +140,5 @@ public class Main {
         System.out.println();
         group2.printGroup();
         System.out.println();
-
-        /*
-        System.out.println();
-        System.out.println("Alumnos del grupo: " + group.getCode());
-
-        for (int i = 0; i < group.getEnrolled(); i++) {
-            Student student = group.getStudent(i);
-            System.out.println(student.getCode() + ": " + student.getName() + " " + student.getLastName());
-        }
-
-        System.out.println();
-        System.out.println("Alumnos del grupo: " + group2.getCode());
-
-        for (int i = 0; i < group2.getEnrolled(); i++) {
-            Student student = group2.getStudent(i);
-            System.out.println(student.getCode() + ": " + student.getName() + " " + student.getLastName());
-        }
-        */
     }
 }
