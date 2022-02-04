@@ -1,8 +1,10 @@
+import java.util.Objects;
+
 //Modificadores de acceso ---> Encapsulamiento
 class Student {
-    private String name;
-    private String lastName;
-    private String code;
+    private final String name;
+    private final String lastName;
+    private final String code;
 
     // Constructor (Nos ayuda a inicializar variable en los valores que necesitemos)
 
@@ -30,8 +32,8 @@ class Student {
 class Group {
     //Cuando declaras atributos se inicializan en "null" de tipo String (tipo primitivos)
 
-    private String code;
-    private Student[] students;
+    private final String code;
+    private final Student[] students;
     private int enrolled;
     private int rejected;
 
@@ -43,14 +45,14 @@ class Group {
     // Se inicializa en "0", todos los de tipo numéricos (int, float, short, byte, double, char)
     // boolean (otro tipo de dato) Se inicializa en "false"
 
-
+    /*
     public void setCode(String code){
         this.code = code;
     }
 
     public void setCapacity(int capacity){
         students = new Student[capacity];
-    }
+    }*/
 
     public boolean addStudent(Student student){
         if(enrolled < students.length){
@@ -86,18 +88,18 @@ class Group {
         return rejected;
     }
 
+    /*
     public Student getStudent(int index){
         return students [index];
-    }
+    }*/
 
     public void removeStudent(String code) {
         int i;
 
-        for(i=0; i<enrolled && students[i].getCode() != code; i++);
+        for(i=0; i<enrolled && !Objects.equals(students[i].getCode(), code); i++);
 
         if(i != enrolled){
-            for(int j=i;  j < enrolled-1; j++)
-                students[j]=students[j+1];
+            if (enrolled - 1 - i >= 0) System.arraycopy(students, i + 1, students, i, enrolled - 1 - i);
             enrolled--;
         }
         else
@@ -129,7 +131,7 @@ public class Main {
         }
 
         if (!group.addStudent(student2)) {
-
+            System.out.println("Estudiante no fue añadido: " + student2.getName() + " " + student2.getLastName());
         }
 
         group.addStudent(new Student("Jorge", "Acosta", "1"));
