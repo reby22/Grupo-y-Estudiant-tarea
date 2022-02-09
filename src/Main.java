@@ -12,7 +12,6 @@ class Student {
         this.code = code;
     }
 
-
     public String getName(){
         return name;
     }
